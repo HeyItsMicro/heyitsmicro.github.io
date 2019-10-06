@@ -1,118 +1,322 @@
 <html>
+
 <head>
-  <title>Micro</title>
-  <style>
-/* dark mode */
-    @media (prefers-color-scheme: dark) {
-    body {
-        color: #fff;
-        background: #000;
-    }
+    <title>Micro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .nav {
+            position: fixed;
+            width: calc(100% - 30px);
+            left: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            box-shadow: 0px 5px 20px rgba(24, 24, 24, 0.2);
+            background: #FFFFFF;
+        }
+        .nav-top {
+            top: 0px;
+        }
+        .nav-bottom {
+            bottom: 0px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .nav {
+                background: #141D26;
+                box-shadow: 0px 5px 20px rgba(25, 25, 25, 0.8);
+            }
+            .nav-top {
+                border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+            }
+            .nav-bottom {
+                border-top: solid 1px rgba(255, 255, 255, 0.1);
+            }
+        }
+        .blue {
+            color: #147EFB;
+        }
+        .red {
+            color: #FC3D39;
+        }
+        .green {
+            color: #53D769;
+        }
+        .blue-bg {
+            background: #147EFB;
+            color: white;
+        }
+        .red-bg {
+            background: #FC3D39;
+            color: white;
+        }
+        .green-bg {
+            background: #53D769;
+            color: white;
+        }
+        .clickable {
+            cursor: pointer;
+        }
+        .prompt {
+            background: #000000BB;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            color: #000000;
+        }
+        .prompt .content {
+            margin: 25px;
+            padding: 15px;
+            border-radius: 5px;
+            background: #FFFFFF;
+        }
+        @media (prefers-color-scheme: dark) {
+            .prompt {
+                color: #FFFFFF;
+            }
+            .prompt .content {
+                background: #141D26;
+                border: solid 1px rgba(255, 255, 255, 0.1);
+            }
+        }
+        .prompt .content .pbtn {
+            padding: 8px;
+            border-radius: 5px;
+            text-align: center;
+            flex: 1;
+        }
+        input {
+            border: none;
+            background: rgba(243, 243, 243);
+            border-radius: 5px;
+            padding: 8px;
+            margin: 0;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-break: normal;
+            word-wrap: normal;
+            margin: 0;
+            font-family: sans-serif;
+            overflow-y: scroll;
+        }
+        body, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+        * {
+            font-family: sans-serif;
+        }
+        .btn {
+            background: #007AFF;
+            color: #FFFFFF;
+            padding: 15px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn:hover {
+            background: #007AEE;
+        }
+        .btn:active {
+            background: #007AE0;
+        }
+        .container {
+            margin: 25px;
+            box-shadow: 0px 5px 20px rgba(24, 24, 24, 0.2);
+            padding: 25px;
+            border-radius: 9px;
+        }
+        hr {
+            margin: 0px;
+            height: 1px;
+            background: black;
+            border: 0px;
+        }
+        a {
+            text-decoration: none;
+        }
+        .projects {
+            padding: 15px;
+        }
 
-    .header {
-      text-align: center;
-      box-shadow: 0 15px 48px 0 rgb(255, 255, 255);
-      padding: 32px;
-      border-radius: 9px;
-    }
-
-    .header .banner {
-      height: 128px;
-      border-radius: 20px;
-      box-shadow: 0 15px 48px 0 rgb(255, 255, 255);
-    }
-
-}
-/* light mode */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-    }
-
-    p {
-      line-height: 1.5em;
-    }
-
-    .header {
-      text-align: center;
-      box-shadow: 0 15px 48px 0 rgba(0, 0, 0, 0.1);
-      padding: 32px;
-      border-radius: 9px;
-    }
-
-    .header .banner {
-      height: 128px;
-      border-radius: 20px;
-      box-shadow: 0 15px 48px 0 rgba(0, 0, 0, 0.1);
-    }
-
-    .container {
-      padding: 32px;
-      word-wrap: break-word;
-    }
-
-    .btn {
-      background: #007aff;
-      color: #fff;
-      padding: 8px;
-      text-decoration: none;
-      text-align: center;
-      border-radius: 20px;
-      padding-left: 32px;
-      padding-right: 32px;
-      box-shadow: 0 15px 48px 0 rgba(0, 0, 0, 0.1);
-    }
-
-    .btn:hover {
-      background: #007aee;
-    }
-
-    .btn:active {
-      background: #007aaa;
-    }
-
-
-    /* Sections */
-    .section {
-      margin-top: 24px;
-    }
-
-    .section .title {
-      font-size: 25px;
-      text-transform: uppercase;
-      font-weight: 900;
-    }
-  </style>
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #141D26;
+                color: #FFFFFF;
+            }
+            hr {
+                background: #FFFFFF;
+            }
+            .container {
+                box-shadow: 0px 5px 20px rgba(25, 25, 25, 0.8);
+                border: solid 1px rgba(255, 255, 255, 0.1);
+            }
+            input {
+                background: #243447;
+                color: #FFFFFF;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="header">
-      <img src="https://api.zenithdevs.com/eclipse/twitter/HeyItsMicro" alt="Micro's logo" class="banner"></img>
-      <h1 class="title">Micro</h1>
-      <a href="https://twitter.com/HeyItsMicro" target="blank" class="btn">Follow</a>
-      <p><br> Hey, It's Micro! I'm interested in all forms of technology and how they work (or don't), but mostly Apple related stuff. If you would like, you can follow me over on twitter to see what I'm up to! :)</p>
+    <div class="nav nav-top">
+        <!-- Left element -->
+        <span>Micro</span>
+        <!-- Center element -->
+        <span></span>
+        <!-- Right element -->
+        <span onclick="askName()" class="blue clickable">Sign in</span>
+        
     </div>
 
-    <body>
-        <style> .le-button
-            {
-            position: absolute; 
-            top: 10px; 
-            right: 10px;
-            }
-            </style>
-      <div class="le-button" onclick="askName()">Sign in</div>
-      <script>
-      function askName() {
-      const name = prompt('Enter your username you fuck.');
-      if (!!name) {
-      prompt("Hello " + name + ", enter your password.");
-      alert('Access denied, fuck off.')
-      }
-      }
-      </script>
-    </body>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="container">
+        <center>
+            <img src="https://api.zenithdevs.com/eclipse/twitter/HeyItsMicro" height="128px" style="border-radius: 20px; box-shadow: 0px 15px 48px rgba(0, 0, 0, 0.2);">
+            <br><br>
+            <h1>Micro</h1>
+        </center>
+        <br><hr><br>
+        <span style="text-align: justify;">
+            Hey, It's Micro! I'm interested in all forms of technology and how they work &lpar;or don't&rpar;, but mostly Apple related stuff. If you would like, you can check out my accounts to see what I'm up to!
+        </span>
+    </div>
+
+    <div class="nav nav-bottom">
+        <a href="https://github.com/HeyItsMicro" target="_blank" class="blue clickable">GitHub</a>
+        &nbsp;
+        <a href="https://www.reddit.com/user/DJ_MICR0TRAP" target="_blank" class="blue clickable">Reddit</a>
+        &nbsp;
+        <a href="https://twitter.com/HeyItsMicro" target="_blank" class="blue clickable">Twitter</a>
+    </div>
+
+    <script>
+        async function alert(args = { name: false, text: false }) {
+            if (typeof args == "string") args = { text: args };
+            if (typeof args != "object") return new Promise((res, rej) => rej("Incorrect type"));
+            var name = args.name,
+                text = args.text;
+            if (!text) return new Promise((res, rej) => rej("No text"));
+            return new Promise(resolve => {
+                var background = document.createElement("div");
+                background.className = "prompt";
+
+                var content = document.createElement("div");
+                content.className = "content";
+
+                var heading = document.createElement("h3");
+                heading.style.marginTop = "0px";
+                heading.style.marginBottom = "15px";
+                heading.innerText = name;
+
+                var body = document.createElement("div");
+                
+                var pre = document.createElement("pre");
+                pre.style.marginBottom = "15px";
+                pre.innerText = text;
+
+                var buttons = document.createElement("div");
+                buttons.style.display = "flex";
+                buttons.style.marginRight = "-5px";
+
+                var ok = document.createElement("div");
+                ok.onclick = () => {
+                    background.remove();
+                    resolve(null);
+                }
+                ok.className = "pbtn green-bg clickable";
+                ok.style.marginRight = "5px";
+                ok.innerText = "Continue";
+
+                buttons.appendChild(ok);
+                body.appendChild(pre);
+                body.appendChild(buttons);
+                if (name) content.appendChild(heading);
+                content.appendChild(body);
+                background.appendChild(content);
+                document.body.appendChild(background);
+
+                pre.style.maxHeight = `calc(100vh - 95px - ${buttons.clientHeight}px)`;
+            });
+        }
+        async function prompt(args = { name: false, placeholder: false, secure: false }) {
+            if (typeof args == "string") args = { name: args };
+            if (typeof args != "object") return new Promise((res, rej) => rej("Incorrect type"));
+            var name = args.name,
+                placeholder = args.placeholder,
+                secure = args.secure;
+            return new Promise(resolve => {
+                var background = document.createElement("div");
+                background.className = "prompt";
+
+                var content = document.createElement("div");
+                content.className = "content";
+
+                var heading = document.createElement("h3");
+                heading.style.marginTop = "0px";
+                heading.style.marginBottom = "15px";
+                heading.innerText = name;
+
+                var body = document.createElement("div");
+
+                var input = document.createElement("input");
+                if (placeholder) input.placeholder = placeholder;
+                if (secure) input.type = "password";
+                input.style.width = "100%";
+                input.style.marginBottom = "5px";
+
+                var buttons = document.createElement("div");
+                buttons.style.display = "flex";
+                buttons.style.marginRight = "-5px";
+
+                var cancel = document.createElement("div");
+                cancel.onclick = () => {
+                    background.remove();
+                    resolve(null);
+                }
+                cancel.className = "pbtn red-bg clickable";
+                cancel.style.marginRight = "5px";
+                cancel.innerText = "Cancel";
+
+                var ok = document.createElement("div");
+                ok.onclick = () => {
+                    background.remove();
+                    resolve(input.value);
+                }
+                ok.className = "pbtn green-bg clickable";
+                ok.style.marginRight = "5px";
+                ok.innerText = "Continue";
+
+                body.appendChild(input);
+                buttons.appendChild(ok);
+                buttons.appendChild(cancel);
+                body.appendChild(buttons);
+                if (name) content.appendChild(heading);
+                content.appendChild(body);
+                background.appendChild(content);
+                document.body.appendChild(background);
+            });
+        }
+        async function askName() {
+            var name = await prompt("Enter your username.");
+            if (!name) return false;
+            var password = await prompt({ name: "Enter your password.", secure: true });
+            if (!password) return false;
+            await alert("LOL PRANKED.");
+        }
+        function space(elem) {
+            elem.outerHTML += `<div style="height: ${elem.clientHeight}px"></div>`;
+        }
+        var navs = document.getElementsByClassName("nav");
+        for (var i = 0; i < navs.length; i++) space(navs[i]);
+    </script>
+
+    <div class="projects">
+        <h2>Projects (Coming Soon!)</h2>
+    </div>
 </body>
+
 </html>
